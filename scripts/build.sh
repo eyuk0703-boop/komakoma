@@ -139,7 +139,7 @@ em++ \
   -sMAX_WEBGL_VERSION=2 \
   -sFULL_ES2=1 \
   '-sEXPORTED_RUNTIME_METHODS=["callMain","FS"]' \
-  --shell-file web/shell.html \
+  --shell-file web/index.html \
   -o "$out_dir/index.html" \
   "${debug_flags[@]}" \
   "${sources[@]}"
