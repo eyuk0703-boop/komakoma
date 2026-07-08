@@ -272,39 +272,41 @@
 async function loadPublicFont() {
   appendStatus("Loading font...");
 
-  try {
-    const response = await fetch("NotoSansJP-Regular.ttf", {
-      cache: "force-cache"
-    });
+  const candidates = [
+    "NotoSansJP-Regular.ttf",
+    "./NotoSansJP-Regular.ttf",
+    "public/NotoSansJP-Regular.ttf"
+  ];
 
-    if (!response.ok) {
-      throw new Error();
-    }
+  for (const path of candidates) {
+    try {
+      const response = await fetch(path, { cache: "force-cache" });
 
-    const bytes = new Uint8Array(await response.arrayBuffer());
-    Module.FS.writeFile("/NotoSansJP-Regular.ttf", bytes);
-
-    fontReady = true;
-    appendStatus("Font ready.");
-    updateStartButton();
-  } catch (e) {
-    appendStatus("Running from file://");
-
-    fontReady = true;
-    updateStartButton();
-  }
-}
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        continue;
       }
 
       const bytes = new Uint8Array(await response.arrayBuffer());
-      Module.FS.writeFile("/NotoSansJP-Regular.ttf", bytes);
-      fontReady = true;
-      appendStatus("Font ready.");
-      updateStartButton();
-    }
 
+      try {
+        Module.FS.unlink("/NotoSansJP-Regular.ttf");
+      } catch (_) {}
+
+      Module.FS.writeFile("/NotoSansJP-Regular.ttf", bytes);
+
+      appendStatus(`Loaded font: ${path}`);
+      fontReady = true;
+      updateStartButton();
+      return;
+    } catch (_) {
+      // file:// では fetch が失敗するので次へ
+    }
+  }
+
+  appendStatus("Using local/system font.");
+  fontReady = true;
+  updateStartButton();
+}
     function updateStartButton() {
       startButton.disabled = !(runtimeReady && fontReady && filesReady) || gameStarted;
     }
