@@ -222,7 +222,7 @@ void TextHelper::RenderTextToTexture(i32 xPos, i32 yPos, i32 spriteWidth, i32 sp
     SDL_Rect shadowRect;
     SDL_Rect textRect;
 
-    if (!isUTF8Encoded(string))
+    if (true)
     {
         char *utf8 = sjis2utf8(string);
         strcpy(convertedText, utf8);
