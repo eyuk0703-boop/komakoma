@@ -58,8 +58,8 @@ def emit(path: Path, name: str) -> str:
 
 out.write_text(
     "#pragma once\n"
-    + emit(root / "src" / "graphics" / "ff.vert", "vertShaderBytes")
-    + emit(root / "src" / "graphics" / "ff.frag", "fragShaderBytes"),
+    + emitroot / "graphics" / "ff.vert"),
+    + emitroot / "graphics" / "ff.frag"),
     encoding="utf-8",
 )
 PY
