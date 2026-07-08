@@ -99,16 +99,16 @@ sources=(
   src/ZunMath.cpp
   src/utils.cpp
   src/ZunTimer.cpp
-  src/graphics/GLFunc.cpp
-  src/graphics/FixedFunctionGL.cpp
-  src/graphics/WebGL.cpp
-  src/graphics/Software.cpp
-  src/midi/MidiDefault.cpp
-  src/pbg3/FileAbstraction.cpp
-  src/pbg3/IPbg3Parser.cpp
-  src/pbg3/Pbg3Archive.cpp
-  src/pbg3/Pbg3Parser.cpp
-  src/thirdparty/sjis_converter.cpp
+  graphics/GLFunc.cpp
+  graphics/FixedFunctionGL.cpp
+  graphics/WebGL.cpp
+  graphics/Software.cpp
+  midi/MidiDefault.cpp
+  pbg3/FileAbstraction.cpp
+  pbg3/IPbg3Parser.cpp
+  pbg3/Pbg3Archive.cpp
+  pbg3/Pbg3Parser.cpp
+  thirdparty/sjis_converter.cpp
 )
 
 opt="-O2"
